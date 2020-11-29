@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30717.126
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1300
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{BCC7292D-A5BD-4EA6-88CF-419B46B7E2EB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{C315860B-9E9B-47A7-8761-7BC2993A038D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BCC7292D-A5BD-4EA6-88CF-419B46B7E2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BCC7292D-A5BD-4EA6-88CF-419B46B7E2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BCC7292D-A5BD-4EA6-88CF-419B46B7E2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C315860B-9E9B-47A7-8761-7BC2993A038D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C315860B-9E9B-47A7-8761-7BC2993A038D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C315860B-9E9B-47A7-8761-7BC2993A038D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C315860B-9E9B-47A7-8761-7BC2993A038D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
