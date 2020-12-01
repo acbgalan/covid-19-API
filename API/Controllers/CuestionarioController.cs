@@ -7,6 +7,7 @@ using System.Web.Http;
 
 using Covid19.DAL;
 using Covid19.DAL.Models;
+using Covid19.DAL.DTOs;
 using System.Web.Http.Description;
 
 namespace Covid19.API.Controllers
@@ -37,20 +38,31 @@ namespace Covid19.API.Controllers
         }
 
         // POST: api/cuestionario
-        public IHttpActionResult PostCuestionario(Cuestionario cuestionario)
+        [ResponseType(typeof(Cuestionario))]
+        public IHttpActionResult PostCuestionario([FromBody] CuestionarioDto cuestionarioDto)
         {
-            if (!ModelState.IsValid || cuestionario == null)
+            if (!ModelState.IsValid || cuestionarioDto == null)
             {
                 return BadRequest(ModelState);
             }
 
+            Cuestionario cuestionario = new Cuestionario()
+            {
+                Operario = cuestionarioDto.Operario,
+                Nombre = cuestionarioDto.Nombre,
+                Fecha = DateTime.Now.Date,
+                Perfil = cuestionarioDto.Perfil,
+                Respuesta = cuestionarioDto.Respuesta,
+                FechaRespuesta = DateTime.Now
+            };
+
             db.Cuestionarios.Add(cuestionario);
             db.SaveChanges();
 
-            return Ok(cuestionario);
+            return CreatedAtRoute("Default", new { id = cuestionario.Id }, cuestionario);
         }
 
-
+        [NonAction]
         public bool CuestionarioExists(int id)
         {
             return db.Cuestionarios.Where(x => x.Id == id).Count() > 0;
