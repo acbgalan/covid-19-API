@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CovidContext.cs" />
+    <Compile Include="DTOs\CuestionarioDto.cs" />
     <Compile Include="Models\Cuestionario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
