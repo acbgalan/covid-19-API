@@ -39,20 +39,20 @@ namespace Covid19.API.Controllers
 
         // POST: api/cuestionario
         [ResponseType(typeof(Cuestionario))]
-        public IHttpActionResult PostCuestionario([FromBody] CuestionarioDto cuestionarioDto)
+        public IHttpActionResult PostCuestionario([FromBody] CuestionarioDto request)
         {
-            if (!ModelState.IsValid || cuestionarioDto == null)
+            if (!ModelState.IsValid || request == null)
             {
                 return BadRequest(ModelState);
             }
 
             Cuestionario cuestionario = new Cuestionario()
             {
-                Operario = cuestionarioDto.Operario,
-                Nombre = cuestionarioDto.Nombre,
+                Operario = request.Operario,
+                Nombre = request.Nombre,
                 Fecha = DateTime.Now.Date,
-                Perfil = cuestionarioDto.Perfil,
-                Respuesta = cuestionarioDto.Respuesta,
+                Perfil = request.Perfil,
+                Respuesta = request.Respuesta,
                 FechaRespuesta = DateTime.Now
             };
 
@@ -61,6 +61,34 @@ namespace Covid19.API.Controllers
 
             return CreatedAtRoute("Default", new { id = cuestionario.Id }, cuestionario);
         }
+
+        // PUT: api/cuestionario
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutCuestionario(int id, [FromBody] TomaTemperaturaDto request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Cuestionario cuestionario = db.Cuestionarios.Find(id);
+
+            if (cuestionario == null)
+            {
+                return NotFound();
+            }
+
+            cuestionario.Temperatura = request.Temperatura;
+            cuestionario.FechaTemperatura = DateTime.Now;
+            cuestionario.Supervisor = request.Supervisor;
+            cuestionario.SupervisorNombre = request.SupervisorNombre;
+
+            db.Entry(cuestionario).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
 
         [NonAction]
         public bool CuestionarioExists(int id)
